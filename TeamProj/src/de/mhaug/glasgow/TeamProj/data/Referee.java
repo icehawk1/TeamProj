@@ -47,4 +47,9 @@ public class Referee {
 		}
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return forename + " " + lastname;
+	}
 }

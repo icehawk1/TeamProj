@@ -3,14 +3,13 @@ package de.mhaug.glasgow.TeamProj;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import de.mhaug.glasgow.TeamProj.data.Referee;
+import de.mhaug.glasgow.TeamProj.gui.GuiCreator;
 
 public class TeamProj {
 
@@ -61,10 +60,7 @@ public class TeamProj {
 	}
 
 	private void interactWithUser(ArrayList<Referee> refereeList) {
-		JFrame mainWindow = new JFrame("Referee Manager");
-		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainWindow.setSize(500, 750);
-		mainWindow.add(new JLabel(String.format("%tT", new Date())));
-		mainWindow.setVisible(true);
+		GuiCreator creator = new GuiCreator(refereeList);
+		creator.createMainWindow();
 	}
 }
