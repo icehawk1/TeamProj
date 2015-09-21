@@ -1,15 +1,24 @@
 package de.mhaug.glasgow.TeamProj.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import de.mhaug.glasgow.TeamProj.data.Area;
+import de.mhaug.glasgow.TeamProj.data.Qualification;
 import de.mhaug.glasgow.TeamProj.data.Referee;
 
 public class GuiCreator {
@@ -22,13 +31,14 @@ public class GuiCreator {
 
 	public void createGui() {
 		JFrame mainWindow = createMainWindow();
+		mainWindow.validate();
 		mainWindow.setVisible(true);
 	}
 
 	private JFrame createMainWindow() {
 		JFrame result = new JFrame("Referee Manager");
 		result.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		result.setSize(500, 750);
+		result.setSize(500, 350);
 
 		result.setLayout(new BorderLayout());
 
@@ -53,6 +63,66 @@ public class GuiCreator {
 	}
 
 	private JComponent createEditorComponent() {
-		return new JPanel();
+		JComponent result = new JPanel();
+		result.setLayout(new BoxLayout(result, BoxLayout.Y_AXIS));
+
+		result.add(createPersonalInformation());
+		result.add(createBoxes());
+		result.add(createAcceptableTravelAreasComponent());
+		result.add(createActionComponent());
+
+		return result;
+	}
+
+	private Component createActionComponent() {
+		JPanel result = createGeneralComponent();
+
+		result.add(new JButton("Update Referee"));
+		result.add(new JButton("Delete Referee"));
+
+		return result;
+	}
+
+	private JPanel createGeneralComponent() {
+		JPanel result = new JPanel();
+		result.setLayout(new FlowLayout(FlowLayout.CENTER));
+		return result;
+	}
+
+	private Component createBoxes() {
+		JPanel result = createGeneralComponent();
+
+		result.add(new JLabel("Qualification: "));
+		JComboBox<Qualification> qualification = new JComboBox<>(Qualification.getPossibleQualifications());
+		result.add(qualification);
+
+		result.add(new JLabel("Home Area: "));
+		JComboBox<Area> homeArea = new JComboBox<>(Area.values());
+		result.add(homeArea);
+
+		return result;
+	}
+
+	private Component createPersonalInformation() {
+		JPanel result = createGeneralComponent();
+
+		result.add(new JLabel("id"));
+		result.add(new JLabel("forename lastname"));
+		result.add(new JLabel("Number of allocated matches: " + 12));
+
+		return result;
+	}
+
+	private JComponent createAcceptableTravelAreasComponent() {
+		JPanel result = createGeneralComponent();
+
+		JLabel description = new JLabel("Travels to: ");
+		result.add(description);
+
+		for (Area elem : Area.values()) {
+			result.add(new JCheckBox(elem.name(), true));
+		}
+
+		return result;
 	}
 }
