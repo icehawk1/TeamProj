@@ -39,7 +39,11 @@ public class TeamProj {
 
 		Scanner inputScanner = new Scanner(inputFile);
 		while (inputScanner.hasNextLine()) {
-			result.add(createRefereeFromLine(inputScanner.nextLine()));
+			String line = inputScanner.nextLine();
+			// Skip empty lines
+			if (line.matches("\\s*"))
+				continue;
+			result.add(createRefereeFromLine(line));
 		}
 
 		return result;
@@ -61,6 +65,6 @@ public class TeamProj {
 
 	private void interactWithUser(ArrayList<Referee> refereeList) {
 		GuiCreator creator = new GuiCreator(refereeList);
-		creator.createMainWindow();
+		creator.createGui();
 	}
 }
