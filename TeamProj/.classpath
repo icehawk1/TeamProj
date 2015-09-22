@@ -7,5 +7,7 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/TeamProj/dependencies/commons-lang3-3.4-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="dependencies/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="dependencies/jfreechart-1.0.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
