@@ -38,7 +38,7 @@ public class Referee {
 	}
 
 	private boolean[] createAcceptableTravelAreas(String areaStr) {
-		final int numAreas = 3;
+		final int numAreas = Area.values().length;
 		assert areaStr.length() == numAreas;
 
 		boolean[] result = new boolean[numAreas];
@@ -48,8 +48,16 @@ public class Referee {
 		return result;
 	}
 
+	public String getID() {
+		return this.id;
+	}
+
 	@Override
 	public String toString() {
-		return forename + " " + lastname;
+		String result = id + " " + forename + " " + lastname + " " + qualification + " " + numAllocations + " "
+				+ homeArea + " ";
+		for (boolean elem : acceptableTravelAreas)
+			result += (elem ? "Y" : "N");
+		return result;
 	}
 }

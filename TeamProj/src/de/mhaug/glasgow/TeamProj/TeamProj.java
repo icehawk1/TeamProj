@@ -12,7 +12,6 @@ import de.mhaug.glasgow.TeamProj.data.Referee;
 import de.mhaug.glasgow.TeamProj.gui.GuiCreator;
 
 public class TeamProj {
-
 	private static final int maxInitialReferees = 12;
 	private static final File inputFile = new File("./RefereesIn.txt");
 
@@ -30,6 +29,8 @@ public class TeamProj {
 		}
 
 		main.interactWithUser(refereeList);
+
+		// main.writeOutputFiles(main.createAllocationList(), refereeList);
 	}
 
 	private ArrayList<Referee> readInputFile() throws FileNotFoundException {

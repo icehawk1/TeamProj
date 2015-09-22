@@ -17,6 +17,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import de.mhaug.glasgow.TeamProj.WindowClosingListener;
 import de.mhaug.glasgow.TeamProj.data.Area;
 import de.mhaug.glasgow.TeamProj.data.Qualification;
 import de.mhaug.glasgow.TeamProj.data.Referee;
@@ -38,6 +39,7 @@ public class GuiCreator {
 	private JFrame createMainWindow() {
 		JFrame result = new JFrame("Referee Manager");
 		result.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		result.addWindowListener(new WindowClosingListener(refereeList));
 		result.setSize(500, 350);
 
 		result.setLayout(new BorderLayout());
