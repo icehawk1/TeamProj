@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-public class RefereeEditorComponent extends JPanel {
+class RefereeEditorComponent extends JPanel {
 	public RefereeEditorComponent() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 

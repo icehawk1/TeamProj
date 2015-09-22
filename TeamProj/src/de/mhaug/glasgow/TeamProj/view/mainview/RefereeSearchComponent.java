@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 
 import de.mhaug.glasgow.TeamProj.controller.SearchListener;
 
-public class RefereeSearchComponent extends JPanel {
+class RefereeSearchComponent extends JPanel {
 	public RefereeSearchComponent() {
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 

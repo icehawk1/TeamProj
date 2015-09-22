@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import de.mhaug.glasgow.TeamProj.model.Area;
 import de.mhaug.glasgow.TeamProj.model.Qualification;
 
-public class QualNAreaComponent extends JPanel {
+class QualNAreaComponent extends JPanel {
 	public QualNAreaComponent() {
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 

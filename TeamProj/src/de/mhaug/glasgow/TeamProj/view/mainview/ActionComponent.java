@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import de.mhaug.glasgow.TeamProj.controller.DeleteListener;
 import de.mhaug.glasgow.TeamProj.controller.UpdateListener;
 
-public class ActionComponent extends JPanel {
+class ActionComponent extends JPanel {
 	public ActionComponent() {
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 

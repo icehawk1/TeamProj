@@ -12,13 +12,13 @@ import java.util.List;
 import de.mhaug.glasgow.TeamProj.model.Allocation;
 import de.mhaug.glasgow.TeamProj.model.Referee;
 
-public class WindowClosingListener implements WindowListener {
+public class ExitListener implements WindowListener {
 
 	private List<Referee> refereeList;
 	private static final File refereeFile = new File("./RefereesOut.txt");
 	private static final File allocationFile = new File("./MatchAllocs.txt");
 
-	public WindowClosingListener(List<Referee> list) {
+	public ExitListener(List<Referee> list) {
 		this.refereeList = list;
 	}
 

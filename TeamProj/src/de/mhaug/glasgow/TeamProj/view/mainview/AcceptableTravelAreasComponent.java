@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import de.mhaug.glasgow.TeamProj.model.Area;
 
-public class AcceptableTravelAreasComponent extends JPanel {
+class AcceptableTravelAreasComponent extends JPanel {
 	public AcceptableTravelAreasComponent() {
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 

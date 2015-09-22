@@ -7,7 +7,7 @@ import javax.swing.JScrollPane;
 import de.mhaug.glasgow.TeamProj.model.Referee;
 import de.mhaug.glasgow.TeamProj.model.RefereeList;
 
-public class RefereeListComponent extends JScrollPane {
+class RefereeListComponent extends JScrollPane {
 	public RefereeListComponent() {
 		super(new JList<>(new RefereeListModel()));
 	}
