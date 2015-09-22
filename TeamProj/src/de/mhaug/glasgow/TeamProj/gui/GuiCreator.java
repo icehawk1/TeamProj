@@ -18,7 +18,9 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import de.mhaug.glasgow.TeamProj.WindowClosingListener;
 import de.mhaug.glasgow.TeamProj.data.Area;
@@ -97,6 +99,8 @@ public class GuiCreator {
 		JComponent result = new JPanel();
 		result.setLayout(new BoxLayout(result, BoxLayout.Y_AXIS));
 
+		result.add(new JSeparator(SwingConstants.HORIZONTAL));
+
 		result.add(createPersonalInformation());
 		result.add(createBoxes());
 		result.add(createAcceptableTravelAreasComponent());
@@ -108,8 +112,23 @@ public class GuiCreator {
 	private Component createActionComponent() {
 		JPanel result = createGeneralComponent();
 
-		result.add(new JButton("Update Referee"));
-		result.add(new JButton("Delete Referee"));
+		final JButton updateButton = new JButton("Update Referee");
+		updateButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Update button pressed: ");
+			}
+		});
+		result.add(updateButton);
+
+		final JButton deleteButton = new JButton("Delete Referee");
+		deleteButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Delete button pressed: ");
+			}
+		});
+		result.add(deleteButton);
 
 		return result;
 	}
@@ -138,8 +157,16 @@ public class GuiCreator {
 		JPanel result = createGeneralComponent();
 
 		result.add(new JLabel("id"));
-		result.add(new JLabel("forename lastname"));
-		result.add(new JLabel("Number of allocated matches: " + 12));
+
+		result.add(new JLabel("Name:"));
+		JTextField nameField = new JTextField("forename lastname");
+		nameField.setEditable(false);
+		result.add(nameField);
+
+		result.add(new JLabel("Number of allocated matches:"));
+		JTextField allocationsField = new JTextField("forename lastname");
+		allocationsField.setEditable(false);
+		result.add(allocationsField);
 
 		return result;
 	}
