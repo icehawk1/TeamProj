@@ -3,6 +3,8 @@ package de.mhaug.glasgow.TeamProj.gui;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -16,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 import de.mhaug.glasgow.TeamProj.WindowClosingListener;
 import de.mhaug.glasgow.TeamProj.data.Area;
@@ -32,6 +35,7 @@ public class GuiCreator {
 
 	public void createGui() {
 		JFrame mainWindow = createMainWindow();
+		mainWindow.pack();
 		mainWindow.validate();
 		mainWindow.setVisible(true);
 	}
@@ -40,15 +44,40 @@ public class GuiCreator {
 		JFrame result = new JFrame("Referee Manager");
 		result.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		result.addWindowListener(new WindowClosingListener(refereeList));
-		result.setSize(500, 350);
 
 		result.setLayout(new BorderLayout());
 
 		JComponent refereeListComponent = createListComponent();
 		result.add(refereeListComponent, BorderLayout.NORTH);
 
+		JComponent refereeSearchComponent = createSearchComponent();
+		result.add(refereeSearchComponent, BorderLayout.CENTER);
+
 		JComponent refereeEditorComponent = createEditorComponent();
 		result.add(refereeEditorComponent, BorderLayout.SOUTH);
+
+		return result;
+	}
+
+	private JComponent createSearchComponent() {
+		JComponent result = createGeneralComponent();
+
+		result.add(new JLabel("Forename:"));
+		final JTextField forenameField = new JTextField(10);
+		result.add(forenameField);
+
+		result.add(new JLabel("Lastname:"));
+		final JTextField lastnameField = new JTextField(10);
+		result.add(lastnameField);
+
+		JButton searchButton = new JButton("Search");
+		searchButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Search button pressed: " + forenameField.getText());
+			}
+		});
+		result.add(searchButton);
 
 		return result;
 	}
