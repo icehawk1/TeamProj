@@ -24,7 +24,7 @@ public class WindowClosingListener implements WindowListener {
 
 	@Override
 	public void windowClosing(WindowEvent event) {
-		System.out.println("Referee Editor closed");
+		System.out.println("Referee Editor closed: " + event);
 		writeAllocationFile(createAllocationList());
 		writeRefereeFile(refereeList);
 	}
@@ -35,7 +35,36 @@ public class WindowClosingListener implements WindowListener {
 	}
 
 	private void writeAllocationFile(List<Allocation> allocationList) {
+		assert !allocationFile.exists() || allocationFile.canWrite();
 
+		// Sort by ID
+		allocationList.sort(new Comparator<Allocation>() {
+			@Override
+			public int compare(Allocation alloc1, Allocation alloc2) {
+				if (alloc1.getWeekNumber() < alloc2.getWeekNumber()) {
+					return -1;
+				} else if (alloc1.getWeekNumber() == alloc2.getWeekNumber()) {
+					return 0;
+				} else
+					return 1;
+			}
+		});
+
+		try {
+			PrintWriter writer = new PrintWriter(allocationFile);
+			writer.println("# Matches played this season");
+			writer.println("# Format of this file: WeekNumber Area Referees");
+			writer.println("# ---------------------------------------------------------");
+
+			for (Allocation currentAllocation : allocationList) {
+				writer.println(currentAllocation);
+			}
+
+			writer.close();
+			System.out.println("alloc file written");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void writeRefereeFile(List<Referee> refereeList) {
