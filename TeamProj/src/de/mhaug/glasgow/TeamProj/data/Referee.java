@@ -1,8 +1,5 @@
 package de.mhaug.glasgow.TeamProj.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.lang3.BooleanUtils;
 
 public class Referee {
@@ -63,12 +60,11 @@ public class Referee {
 		return result;
 	}
 
-	public List<Allocation> getAllocations() {
-		// TODO Auto-generated method stub
-		return new ArrayList<>();
-	}
-
 	public String getName() {
 		return forename + " " + lastname;
+	}
+
+	public Number getNumberOfAllocations() {
+		return numAllocations;
 	}
 }

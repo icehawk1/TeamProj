@@ -20,10 +20,7 @@ public class BarChartCreator {
 			@Override
 			public void run() {
 				JFrame frame = new JFrame("Charts");
-
-				frame.setSize(600, 400);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setVisible(true);
 
 				CategoryDataset ds = createDataset(refereeList);
 				JFreeChart chart = ChartFactory.createBarChart("Test Chart", "Name of Referee",
@@ -31,6 +28,8 @@ public class BarChartCreator {
 
 				ChartPanel cp = new ChartPanel(chart);
 				frame.getContentPane().add(cp);
+				frame.pack();
+				frame.setVisible(true);
 			}
 		});
 	}
@@ -39,7 +38,7 @@ public class BarChartCreator {
 		final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
 		for (Referee ref : refereeList) {
-			dataset.addValue(ref.getAllocations().size(), "Referee", ref.getName());
+			dataset.addValue(ref.getNumberOfAllocations(), "Referee", ref.getName());
 		}
 
 		final String heinz = "Heinz Müller";
