@@ -1,4 +1,4 @@
-package de.mhaug.glasgow.TeamProj;
+package de.mhaug.glasgow.TeamProj.controller;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -9,17 +9,17 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import de.mhaug.glasgow.TeamProj.data.Allocation;
-import de.mhaug.glasgow.TeamProj.data.Referee;
+import de.mhaug.glasgow.TeamProj.model.Allocation;
+import de.mhaug.glasgow.TeamProj.model.Referee;
 
 public class WindowClosingListener implements WindowListener {
 
-	private ArrayList<Referee> refereeList;
+	private List<Referee> refereeList;
 	private static final File refereeFile = new File("./RefereesOut.txt");
 	private static final File allocationFile = new File("./MatchAllocs.txt");
 
-	public WindowClosingListener(ArrayList<Referee> refereeList) {
-		this.refereeList = refereeList;
+	public WindowClosingListener(List<Referee> list) {
+		this.refereeList = list;
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package de.mhaug.glasgow.TeamProj.data;
+package de.mhaug.glasgow.TeamProj.model;
 
 import java.util.ArrayList;
 import java.util.List;

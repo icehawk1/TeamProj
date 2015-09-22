@@ -3,13 +3,15 @@ package de.mhaug.glasgow.TeamProj;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import de.mhaug.glasgow.TeamProj.data.Referee;
-import de.mhaug.glasgow.TeamProj.gui.GuiCreator;
+import de.mhaug.glasgow.TeamProj.model.Referee;
+import de.mhaug.glasgow.TeamProj.model.RefereeList;
+import de.mhaug.glasgow.TeamProj.view.mainview.MainWindow;
 
 public class TeamProj {
 	private static final int maxInitialReferees = 12;
@@ -17,10 +19,11 @@ public class TeamProj {
 
 	public static void main(String[] args) {
 		TeamProj main = new TeamProj();
-		ArrayList<Referee> refereeList = null;
+		List<Referee> refereeList = null;
 
 		try {
 			refereeList = main.readInputFile();
+			RefereeList.create(refereeList);
 		} catch (FileNotFoundException e) {
 			JOptionPane.showMessageDialog(new JFrame("Error"), "The file " + inputFile.getAbsolutePath()
 					+ " could not be found", "Input file not found", JOptionPane.ERROR_MESSAGE);
@@ -28,12 +31,12 @@ public class TeamProj {
 			return;
 		}
 
-		main.interactWithUser(refereeList);
+		main.interactWithUser();
 
 		// main.writeOutputFiles(main.createAllocationList(), refereeList);
 	}
 
-	private ArrayList<Referee> readInputFile() throws FileNotFoundException {
+	private List<Referee> readInputFile() throws FileNotFoundException {
 		assert inputFile.canRead();
 
 		ArrayList<Referee> result = new ArrayList<>(maxInitialReferees);
@@ -64,8 +67,7 @@ public class TeamProj {
 		return result;
 	}
 
-	private void interactWithUser(ArrayList<Referee> refereeList) {
-		GuiCreator creator = new GuiCreator(refereeList);
-		creator.createGui();
+	private void interactWithUser() {
+		MainWindow mw = new MainWindow();
 	}
 }

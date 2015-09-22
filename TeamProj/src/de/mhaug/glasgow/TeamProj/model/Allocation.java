@@ -1,4 +1,4 @@
-package de.mhaug.glasgow.TeamProj.data;
+package de.mhaug.glasgow.TeamProj.model;
 
 public class Allocation {
 	private int weekNumber;

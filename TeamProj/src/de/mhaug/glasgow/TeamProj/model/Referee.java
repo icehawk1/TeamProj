@@ -1,4 +1,4 @@
-package de.mhaug.glasgow.TeamProj.data;
+package de.mhaug.glasgow.TeamProj.model;
 
 import org.apache.commons.lang3.BooleanUtils;
 
