@@ -15,7 +15,7 @@ class RefereeListComponent extends JScrollPane {
 
 class RefereeListModel extends DefaultListModel<Referee> {
 	public RefereeListModel() {
-		for (Referee toAdd : RefereeList.getReadOnlyList())
+		for (Referee toAdd : RefereeList.getReadOnlySet())
 			this.addElement(toAdd);
 	}
 }

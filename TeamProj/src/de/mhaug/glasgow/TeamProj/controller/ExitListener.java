@@ -8,18 +8,20 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
+import java.util.SortedSet;
 
 import de.mhaug.glasgow.TeamProj.model.Allocation;
 import de.mhaug.glasgow.TeamProj.model.Referee;
 
 public class ExitListener implements WindowListener {
 
-	private List<Referee> refereeList;
+	private SortedSet<Referee> refereeList;
 	private static final File refereeFile = new File("./RefereesOut.txt");
 	private static final File allocationFile = new File("./MatchAllocs.txt");
 
-	public ExitListener(List<Referee> list) {
-		this.refereeList = list;
+	public ExitListener(SortedSet<Referee> set) {
+		this.refereeList = set;
 	}
 
 	@Override
@@ -67,20 +69,12 @@ public class ExitListener implements WindowListener {
 		}
 	}
 
-	private void writeRefereeFile(List<Referee> refereeList) {
+	private void writeRefereeFile(Set<Referee> refereeList2) {
 		assert !refereeFile.exists() || refereeFile.canWrite();
-
-		// Sort by ID
-		refereeList.sort(new Comparator<Referee>() {
-			@Override
-			public int compare(Referee ref1, Referee ref2) {
-				return ref1.getID().compareTo(ref2.getID());
-			}
-		});
 
 		try {
 			PrintWriter writer = new PrintWriter(refereeFile);
-			for (Referee currentReferee : refereeList) {
+			for (Referee currentReferee : refereeList2) {
 				writer.println(currentReferee);
 			}
 			writer.close();

@@ -16,7 +16,7 @@ public class MainWindow extends JFrame {
 
 	private void createMainWindow() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.addWindowListener(new ExitListener(RefereeList.getReadOnlyList()));
+		this.addWindowListener(new ExitListener(RefereeList.getReadOnlySet()));
 
 		this.setLayout(new BorderLayout());
 

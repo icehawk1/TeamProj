@@ -15,7 +15,7 @@ class SuitableRefereesComponent extends JScrollPane {
 
 class RefereeListModel extends DefaultListModel<Referee> {
 	public RefereeListModel() {
-		for (Referee ref : RefereeList.getReadOnlyList())
+		for (Referee ref : RefereeList.getReadOnlySet())
 			if (isSuitable(ref))
 				this.addElement(ref);
 	}

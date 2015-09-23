@@ -2,7 +2,7 @@ package de.mhaug.glasgow.TeamProj.model;
 
 import org.apache.commons.lang3.BooleanUtils;
 
-public class Referee {
+public class Referee implements Comparable<Referee> {
 
 	private String id;
 	private String forename;
@@ -43,12 +43,13 @@ public class Referee {
 
 		boolean[] result = new boolean[numAreas];
 		for (int i = 0; i < numAreas; i++) {
-			result[i] = BooleanUtils.toBoolean(areaStr.charAt(i));
+			result[i] = BooleanUtils.toBoolean("" + areaStr.charAt(i));
 		}
 		return result;
 	}
 
 	public String getID() {
+		assert this.id != null;
 		return this.id;
 	}
 
@@ -65,6 +66,22 @@ public class Referee {
 	}
 
 	public Number getNumberOfAllocations() {
+		assert numAllocations >= 0;
 		return numAllocations;
+	}
+
+	@Override
+	public int compareTo(Referee other) {
+		return this.getID().compareToIgnoreCase(other.getID());
+	}
+
+	public String getLastname() {
+		assert lastname != null;
+		return lastname;
+	}
+
+	public String getForename() {
+		assert forename != null;
+		return forename;
 	}
 }

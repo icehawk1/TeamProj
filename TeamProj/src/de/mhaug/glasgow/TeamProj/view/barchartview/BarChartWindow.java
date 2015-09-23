@@ -33,7 +33,7 @@ public class BarChartWindow extends JFrame {
 
 	public void updateDataset() {
 		dataset.clear();
-		for (Referee ref : RefereeList.getReadOnlyList()) {
+		for (Referee ref : RefereeList.getReadOnlySet()) {
 			dataset.addValue(ref.getNumberOfAllocations(), "Referee", ref.getName());
 		}
 
