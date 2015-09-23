@@ -22,7 +22,7 @@ class RefereeSearchComponent extends JPanel {
 		this.add(lastnameField);
 
 		JButton searchButton = new JButton("Search");
-		searchButton.addActionListener(new SearchListener(forenameField.getText(), lastnameField.getText()));
+		searchButton.addActionListener(new SearchListener(forenameField, lastnameField));
 		this.add(searchButton);
 	}
 }

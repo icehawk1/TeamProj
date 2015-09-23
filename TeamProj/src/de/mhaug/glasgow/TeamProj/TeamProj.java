@@ -14,6 +14,6 @@ public class TeamProj {
 		List<Referee> refereeList = rlf.readInputFile();
 		RefereeList.create(refereeList);
 
-		MainWindow mw = new MainWindow();
+		MainWindow.getInstance().setVisible(true);
 	}
 }

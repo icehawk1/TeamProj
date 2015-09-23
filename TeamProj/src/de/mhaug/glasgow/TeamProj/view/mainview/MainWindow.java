@@ -8,10 +8,29 @@ import de.mhaug.glasgow.TeamProj.controller.ExitListener;
 import de.mhaug.glasgow.TeamProj.model.RefereeList;
 
 public class MainWindow extends JFrame {
-	public MainWindow() {
+	private static volatile MainWindow instance;
+	private RefereeListComponent listComp;
+
+	private RefereeSearchComponent searchComp;
+	private RefereeEditorComponent editorComp;
+
+	private MainWindow() {
 		super("Referee Manager");
 		createMainWindow();
-		makeMainWindowVisible();
+		this.pack();
+		this.validate();
+	}
+
+	public static MainWindow getInstance() {
+		if (instance == null) {
+			synchronized (MainWindow.class) {
+				if (instance == null) {
+					instance = new MainWindow();
+				}
+			}
+		}
+
+		return instance;
 	}
 
 	private void createMainWindow() {
@@ -20,19 +39,25 @@ public class MainWindow extends JFrame {
 
 		this.setLayout(new BorderLayout());
 
-		RefereeListComponent listComp = new RefereeListComponent();
+		listComp = new RefereeListComponent();
 		this.add(listComp, BorderLayout.NORTH);
 
-		RefereeSearchComponent searchComp = new RefereeSearchComponent();
+		searchComp = new RefereeSearchComponent();
 		this.add(searchComp, BorderLayout.CENTER);
 
-		RefereeEditorComponent editorComp = new RefereeEditorComponent();
+		editorComp = new RefereeEditorComponent();
 		this.add(editorComp, BorderLayout.SOUTH);
 	}
 
-	private void makeMainWindowVisible() {
-		this.pack();
-		this.validate();
-		this.setVisible(true);
+	public RefereeListComponent getListComponent() {
+		return listComp;
+	}
+
+	public RefereeSearchComponent getSearchComponent() {
+		return searchComp;
+	}
+
+	public RefereeEditorComponent getEditorComponent() {
+		return editorComp;
 	}
 }

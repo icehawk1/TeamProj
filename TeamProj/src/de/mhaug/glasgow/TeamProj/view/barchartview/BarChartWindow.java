@@ -16,8 +16,9 @@ import de.mhaug.glasgow.TeamProj.model.RefereeList;
 public class BarChartWindow extends JFrame {
 	private final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 	private ChartPanel chartPanel;
+	private static volatile BarChartWindow instance;
 
-	public BarChartWindow() {
+	private BarChartWindow() {
 		JFrame frame = new JFrame("Charts");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -27,8 +28,18 @@ public class BarChartWindow extends JFrame {
 		chartPanel = new ChartPanel(chart);
 
 		frame.add(chartPanel);
-		frame.pack();
-		frame.setVisible(true);
+	}
+
+	public static BarChartWindow getInstance() {
+		if (instance == null) {
+			synchronized (BarChartWindow.class) {
+				if (instance == null) {
+					instance = new BarChartWindow();
+				}
+			}
+		}
+
+		return instance;
 	}
 
 	public void updateDataset() {

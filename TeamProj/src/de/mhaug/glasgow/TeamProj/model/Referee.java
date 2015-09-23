@@ -84,4 +84,18 @@ public class Referee implements Comparable<Referee> {
 		assert forename != null;
 		return forename;
 	}
+
+	public boolean[] getAcceptableTravelAreas() {
+		return acceptableTravelAreas;
+	}
+
+	public Qualification getQualification() {
+		assert qualification != null;
+		return qualification;
+	}
+
+	public Area getHomeArea() {
+		assert homeArea != null;
+		return homeArea;
+	}
 }

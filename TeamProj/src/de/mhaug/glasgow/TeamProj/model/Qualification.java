@@ -35,6 +35,16 @@ public class Qualification {
 	public String toString() {
 		return league + "" + level;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Qualification))
+			return false;
+		else {
+			Qualification qual = (Qualification) obj;
+			return this.league == qual.league && this.level == qual.level;
+		}
+	}
 }
 
 enum League {

@@ -8,17 +8,35 @@ import javax.swing.JPanel;
 
 import de.mhaug.glasgow.TeamProj.model.Area;
 import de.mhaug.glasgow.TeamProj.model.Qualification;
+import de.mhaug.glasgow.TeamProj.model.Referee;
 
 class QualNAreaComponent extends JPanel {
+	private JComboBox<Qualification> qualBox = new JComboBox<>(Qualification.getPossibleQualifications());
+	private JComboBox<Area> homeAreaBox = new JComboBox<>(Area.values());
+
 	public QualNAreaComponent() {
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 
 		this.add(new JLabel("Qualification: "));
-		JComboBox<Qualification> qualification = new JComboBox<>(Qualification.getPossibleQualifications());
-		this.add(qualification);
+		this.add(qualBox);
 
 		this.add(new JLabel("Home Area: "));
-		JComboBox<Area> homeArea = new JComboBox<>(Area.values());
-		this.add(homeArea);
+		this.add(homeAreaBox);
+	}
+
+	public void displayRefereeDetails(Referee ref) {
+		for (int i = 0; i < qualBox.getItemCount(); i++) {
+			if (qualBox.getItemAt(i).equals(ref.getQualification())) {
+				qualBox.setSelectedIndex(i);
+				break;
+			}
+		}
+
+		for (int i = 0; i < homeAreaBox.getItemCount(); i++) {
+			if (homeAreaBox.getItemAt(i) == ref.getHomeArea()) {
+				homeAreaBox.setSelectedIndex(i);
+				break;
+			}
+		}
 	}
 }

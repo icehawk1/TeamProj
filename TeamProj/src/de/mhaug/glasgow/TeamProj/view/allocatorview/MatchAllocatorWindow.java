@@ -6,10 +6,24 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class MatchAllocatorWindow extends JFrame {
+	private static volatile MatchAllocatorWindow instance;
+
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		MatchAllocatorWindow mac = new MatchAllocatorWindow();
 		JFrame mainWindow = new MatchAllocatorWindow();
+	}
+
+	private static MatchAllocatorWindow getInstance() {
+		if (instance == null) {
+			synchronized (MatchAllocatorWindow.class) {
+				if (instance == null) {
+					instance = new MatchAllocatorWindow();
+				}
+			}
+		}
+
+		return instance;
 	}
 
 	public MatchAllocatorWindow() {
@@ -27,6 +41,5 @@ public class MatchAllocatorWindow extends JFrame {
 
 		this.pack();
 		this.validate();
-		this.setVisible(true);
 	}
 }

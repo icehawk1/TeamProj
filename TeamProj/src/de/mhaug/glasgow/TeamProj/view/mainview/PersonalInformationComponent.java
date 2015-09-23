@@ -6,20 +6,32 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import de.mhaug.glasgow.TeamProj.model.Referee;
+
 class PersonalInformationComponent extends JPanel {
+	private JLabel idLabel = new JLabel("id");
+	private JTextField nameField = new JTextField("forename lastname");
+	private JTextField allocationsField = new JTextField("0");
+
 	public PersonalInformationComponent() {
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-		this.add(new JLabel("id"));
+		this.add(idLabel);
 
 		this.add(new JLabel("Name:"));
-		JTextField nameField = new JTextField("forename lastname");
 		nameField.setEditable(false);
+		nameField.setColumns(10);
 		this.add(nameField);
 
 		this.add(new JLabel("Number of allocated matches:"));
-		JTextField allocationsField = new JTextField("forename lastname");
 		allocationsField.setEditable(false);
+		allocationsField.setColumns(3);
 		this.add(allocationsField);
+	}
+
+	public void displayRefereeDetails(Referee ref) {
+		idLabel.setText(ref.getID());
+		nameField.setText(ref.getName());
+		allocationsField.setText(ref.getNumberOfAllocations() + "");
 	}
 }

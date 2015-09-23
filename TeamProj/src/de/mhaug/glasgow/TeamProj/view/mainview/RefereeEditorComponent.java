@@ -5,15 +5,28 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-class RefereeEditorComponent extends JPanel {
+import de.mhaug.glasgow.TeamProj.model.Referee;
+
+public class RefereeEditorComponent extends JPanel {
+	private PersonalInformationComponent personalInformationComponent = new PersonalInformationComponent();
+	private QualNAreaComponent qualNAreaComponent = new QualNAreaComponent();
+	private AcceptableTravelAreasComponent acceptableTravelAreasComponent = new AcceptableTravelAreasComponent();
+	private ActionComponent actionComponent = new ActionComponent();
+
 	public RefereeEditorComponent() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		this.add(new JSeparator(SwingConstants.HORIZONTAL));
 
-		this.add(new PersonalInformationComponent());
-		this.add(new QualNAreaComponent());
-		this.add(new AcceptableTravelAreasComponent());
-		this.add(new ActionComponent());
+		this.add(personalInformationComponent);
+		this.add(qualNAreaComponent);
+		this.add(acceptableTravelAreasComponent);
+		this.add(actionComponent);
+	}
+
+	public void displayRefereeDetails(Referee ref) {
+		personalInformationComponent.displayRefereeDetails(ref);
+		qualNAreaComponent.displayRefereeDetails(ref);
+		acceptableTravelAreasComponent.displayRefereeDetails(ref);
 	}
 }
