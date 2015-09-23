@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 import de.mhaug.glasgow.TeamProj.model.Referee;
+import de.mhaug.glasgow.TeamProj.view.allocatorview.ErrorReporter;
 
 public class RefereeListFactory {
 	private static final File inputFile = new File("./RefereesIn.txt");
@@ -24,8 +22,8 @@ public class RefereeListFactory {
 		try {
 			inputScanner = new Scanner(inputFile);
 		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(new JFrame("Error"), "The file " + inputFile.getAbsolutePath()
-					+ " could not be found", "Input file not found", JOptionPane.ERROR_MESSAGE);
+			ErrorReporter.displayErrorMessage("Input file not found", "The file " + inputFile.getAbsolutePath()
+					+ " could not be found");
 			e.printStackTrace();
 			return new ArrayList<Referee>();
 		}

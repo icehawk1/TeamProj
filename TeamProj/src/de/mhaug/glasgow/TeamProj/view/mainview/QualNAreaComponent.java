@@ -39,4 +39,12 @@ class QualNAreaComponent extends JPanel {
 			}
 		}
 	}
+
+	public Qualification getQualification() {
+		return qualBox.getItemAt(qualBox.getSelectedIndex());
+	}
+
+	public Area getHomeArea() {
+		return homeAreaBox.getItemAt(homeAreaBox.getSelectedIndex());
+	}
 }

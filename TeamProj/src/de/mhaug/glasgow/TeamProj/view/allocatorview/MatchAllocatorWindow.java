@@ -16,11 +16,7 @@ public class MatchAllocatorWindow extends JFrame {
 
 	private static MatchAllocatorWindow getInstance() {
 		if (instance == null) {
-			synchronized (MatchAllocatorWindow.class) {
-				if (instance == null) {
-					instance = new MatchAllocatorWindow();
-				}
-			}
+			instance = new MatchAllocatorWindow();
 		}
 
 		return instance;

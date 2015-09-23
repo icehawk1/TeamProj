@@ -32,4 +32,11 @@ class AcceptableTravelAreasComponent extends JPanel {
 			areaCheckBoxes.get(i).setSelected(ref.getAcceptableTravelAreas()[i]);
 		}
 	}
+
+	public boolean[] getBoolValues() {
+		boolean[] result = new boolean[areaCheckBoxes.size()];
+		for (int i = 0; i < areaCheckBoxes.size(); i++)
+			result[i] = areaCheckBoxes.get(i).isSelected();
+		return result;
+	}
 }

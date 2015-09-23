@@ -29,4 +29,16 @@ public class RefereeEditorComponent extends JPanel {
 		qualNAreaComponent.displayRefereeDetails(ref);
 		acceptableTravelAreasComponent.displayRefereeDetails(ref);
 	}
+
+	public String getRefereeID() {
+		return personalInformationComponent.getRefereeID();
+	}
+
+	public Referee buildReferee() {
+		Referee result = new Referee(personalInformationComponent.getRefereeID(),
+				personalInformationComponent.getForename(), personalInformationComponent.getLastname(),
+				qualNAreaComponent.getQualification(), personalInformationComponent.getNumAllocations(),
+				qualNAreaComponent.getHomeArea(), acceptableTravelAreasComponent.getBoolValues());
+		return result;
+	}
 }
