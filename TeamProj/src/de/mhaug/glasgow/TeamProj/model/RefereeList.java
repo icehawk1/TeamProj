@@ -86,9 +86,15 @@ public final class RefereeList {
 	 * nothing.
 	 */
 	public static void delete(String id) {
+		assert id != null;
+		Referee toRemove = null;
 		for (Referee ref : referees)
-			if (ref.getID().equalsIgnoreCase(id))
-				referees.remove(ref);
+			if (ref.getID().equalsIgnoreCase(id)) {
+				toRemove = ref;
+				break;
+			}
+		if (toRemove != null)
+			referees.remove(toRemove);
 	}
 
 	/**
@@ -99,8 +105,13 @@ public final class RefereeList {
 		assert forename != null;
 		assert lastname != null;
 
+		Referee toRemove = null;
 		for (Referee ref : referees)
-			if (ref.getForename().equalsIgnoreCase(forename) && ref.getLastname().equalsIgnoreCase(lastname))
-				referees.remove(ref);
+			if (ref.getForename().equalsIgnoreCase(forename) && ref.getLastname().equalsIgnoreCase(lastname)) {
+				toRemove = ref;
+				break;
+			}
+		if (toRemove != null)
+			referees.remove(toRemove);
 	}
 }

@@ -29,7 +29,7 @@ public class SearchListener implements ActionListener {
 		displayReferee(forename, lastname);
 	}
 
-	public void displayReferee(String forename, String lastname) {
+	public static void displayReferee(String forename, String lastname) {
 		Referee ref;
 		try {
 			ref = RefereeList.request(forename, lastname);
@@ -41,7 +41,7 @@ public class SearchListener implements ActionListener {
 		displayReferee(ref);
 	}
 
-	public void displayReferee(String id) {
+	public static void displayReferee(String id) {
 		Referee ref;
 		try {
 			ref = RefereeList.request(id);
@@ -53,7 +53,7 @@ public class SearchListener implements ActionListener {
 		displayReferee(ref);
 	}
 
-	private void displayReferee(Referee ref) {
+	private static void displayReferee(Referee ref) {
 		RefereeEditorComponent editor = MainWindow.getInstance().getEditorComponent();
 		editor.displayRefereeDetails(ref);
 	}

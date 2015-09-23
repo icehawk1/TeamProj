@@ -41,4 +41,9 @@ public class RefereeEditorComponent extends JPanel {
 				qualNAreaComponent.getHomeArea(), acceptableTravelAreasComponent.getBoolValues());
 		return result;
 	}
+
+	public boolean areValuesOfFieldsValid() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }
