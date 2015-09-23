@@ -1,10 +1,12 @@
 package de.mhaug.glasgow.TeamProj.view.mainview;
 
 import java.awt.BorderLayout;
+import java.util.SortedSet;
 
 import javax.swing.JFrame;
 
 import de.mhaug.glasgow.TeamProj.controller.ExitListener;
+import de.mhaug.glasgow.TeamProj.model.Referee;
 import de.mhaug.glasgow.TeamProj.model.RefereeList;
 
 public class MainWindow extends JFrame {
@@ -23,11 +25,7 @@ public class MainWindow extends JFrame {
 
 	public static MainWindow getInstance() {
 		if (instance == null) {
-			synchronized (MainWindow.class) {
-				if (instance == null) {
-					instance = new MainWindow();
-				}
-			}
+			instance = new MainWindow();
 		}
 
 		return instance;
@@ -59,5 +57,9 @@ public class MainWindow extends JFrame {
 
 	public RefereeEditorComponent getEditorComponent() {
 		return editorComp;
+	}
+
+	public void updateRefereeList(SortedSet<Referee> referees) {
+		listComp.updateList(referees);
 	}
 }

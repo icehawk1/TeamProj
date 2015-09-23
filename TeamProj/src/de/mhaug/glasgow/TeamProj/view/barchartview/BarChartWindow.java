@@ -1,5 +1,7 @@
 package de.mhaug.glasgow.TeamProj.view.barchartview;
 
+import java.util.Set;
+
 import javax.swing.JFrame;
 
 import org.jfree.chart.ChartFactory;
@@ -10,8 +12,8 @@ import org.jfree.chart.event.ChartChangeEventType;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import de.mhaug.glasgow.TeamProj.controller.UtilController;
 import de.mhaug.glasgow.TeamProj.model.Referee;
-import de.mhaug.glasgow.TeamProj.model.RefereeList;
 
 public class BarChartWindow extends JFrame {
 	private final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -22,7 +24,10 @@ public class BarChartWindow extends JFrame {
 		JFrame frame = new JFrame("Charts");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		updateDataset();
+		for (Referee ref : UtilController.getAvailableReferees()) {
+			dataset.addValue(ref.getNumberOfAllocations(), "Referee", ref.getName());
+		}
+
 		JFreeChart chart = ChartFactory.createBarChart("Test Chart", "Name of Referee", "Number of Allocations",
 				dataset, PlotOrientation.VERTICAL, false, false, false);
 		chartPanel = new ChartPanel(chart);
@@ -30,26 +35,28 @@ public class BarChartWindow extends JFrame {
 		frame.add(chartPanel);
 	}
 
-	public static BarChartWindow getInstance() {
+	public static synchronized BarChartWindow getInstance() {
 		if (instance == null) {
-			synchronized (BarChartWindow.class) {
-				if (instance == null) {
-					instance = new BarChartWindow();
-				}
-			}
+			instance = new BarChartWindow();
 		}
 
 		return instance;
 	}
 
-	public void updateDataset() {
+	public void updateDataset(Set<Referee> referees) {
+		assert referees != null;
+
 		dataset.clear();
-		for (Referee ref : RefereeList.getReadOnlySet()) {
+
+		for (Referee ref : referees) {
 			dataset.addValue(ref.getNumberOfAllocations(), "Referee", ref.getName());
 		}
 
 		ChartChangeEvent event = new ChartChangeEvent(dataset);
 		event.setType(ChartChangeEventType.DATASET_UPDATED);
+
+		assert event != null;
+		assert chartPanel != null;
 		chartPanel.chartChanged(event);
 	}
 }

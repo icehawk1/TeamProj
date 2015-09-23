@@ -34,4 +34,20 @@ class PersonalInformationComponent extends JPanel {
 		nameField.setText(ref.getName());
 		allocationsField.setText(ref.getNumberOfAllocations() + "");
 	}
+
+	public String getRefereeID() {
+		return idLabel.getText();
+	}
+
+	public String getForename() {
+		return nameField.getText().split(" +")[0];
+	}
+
+	public String getLastname() {
+		return nameField.getText().split(" +")[1];
+	}
+
+	public int getNumAllocations() {
+		return Integer.parseInt(allocationsField.getText());
+	}
 }

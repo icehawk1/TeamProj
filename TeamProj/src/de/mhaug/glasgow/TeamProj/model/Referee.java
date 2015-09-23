@@ -12,6 +12,17 @@ public class Referee implements Comparable<Referee> {
 	private Area homeArea;
 	private boolean[] acceptableTravelAreas;
 
+	public Referee(String id, String forename, String lastname, Qualification qualification, int numAllocations,
+			Area homeArea, boolean[] acceptableTravelAreas) {
+		this.id = id;
+		this.forename = forename;
+		this.lastname = lastname;
+		this.qualification = qualification;
+		this.numAllocations = numAllocations;
+		this.homeArea = homeArea;
+		this.acceptableTravelAreas = acceptableTravelAreas;
+	}
+
 	public Referee(String[] refereeDetails) {
 		assert refereeDetails.length == 7;
 
@@ -65,7 +76,7 @@ public class Referee implements Comparable<Referee> {
 		return forename + " " + lastname;
 	}
 
-	public Number getNumberOfAllocations() {
+	public int getNumberOfAllocations() {
 		assert numAllocations >= 0;
 		return numAllocations;
 	}

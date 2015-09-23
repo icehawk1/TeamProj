@@ -76,6 +76,7 @@ public final class RefereeList {
 	 * it will create it.
 	 */
 	public static void update(Referee referee) {
+		assert referee != null;
 		referees.remove(referee);
 		referees.add(referee);
 	}
