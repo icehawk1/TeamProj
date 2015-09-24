@@ -9,7 +9,7 @@ import javax.swing.JScrollPane;
 import de.mhaug.glasgow.TeamProj.model.Referee;
 
 public class SuitableRefereesComponent extends JScrollPane {
-	private final static JList internallist = new JList<>(SuitableRefereesModel.getInstance());
+	private final static JList<Referee> internallist = new JList<>(SuitableRefereesModel.getInstance());
 
 	public SuitableRefereesComponent() {
 		super(internallist);
@@ -52,7 +52,7 @@ public class SuitableRefereesComponent extends JScrollPane {
 	}
 
 	public List<Referee> getSelectedReferees() {
-		List result = internallist.getSelectedValuesList();
+		List<Referee> result = internallist.getSelectedValuesList();
 		// System.out.println(result);
 		return result;
 	}

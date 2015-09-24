@@ -62,6 +62,8 @@ public class MatchAllocationListener implements ActionListener {
 
 			appendToAllocationFile(allocation);
 
+			allocation.getReferee1().increaseNumberOfAllocations();
+			allocation.getReferee2().increaseNumberOfAllocations();
 			MainWindow.getInstance().updateView();
 			BarChartWindow.getInstance().updateView();
 
@@ -83,6 +85,10 @@ public class MatchAllocationListener implements ActionListener {
 			out.println(allocation.getWeekNumber() + " " + allocation.getMatchLevel() + " " + allocation.getArea()
 					+ " " + allocation.getReferee1().getName() + " " + allocation.getReferee2().getName());
 			out.close();
+
+			System.out.println(allocation.getWeekNumber() + " " + allocation.getMatchLevel() + " "
+					+ allocation.getArea() + " " + allocation.getReferee1().getName() + " "
+					+ allocation.getReferee2().getName());
 		} catch (IOException e) {
 			ErrorReporter.displayErrorMessage("Write Error", "Could not append to match allocation file");
 		}

@@ -46,7 +46,6 @@ public final class UtilController {
 		RefereeEditorComponent refEditor = MainWindow.getInstance().getEditorComponent();
 		Referee result = refEditor.buildReferee();
 
-		Referee.validate(result);
 		return result;
 	}
 }

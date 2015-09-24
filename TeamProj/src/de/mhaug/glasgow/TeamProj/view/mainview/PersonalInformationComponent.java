@@ -7,10 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import de.mhaug.glasgow.TeamProj.model.Referee;
+import de.mhaug.glasgow.TeamProj.view.allocatorview.ErrorReporter;
 
 class PersonalInformationComponent extends JPanel {
 	private JLabel idLabel = new JLabel("id");
-	private JTextField nameField = new JTextField("forename lastname");
+	private JTextField forenameField = new JTextField("forename");
+	private JTextField lastnameField = new JTextField("lastname");
 	private JTextField allocationsField = new JTextField("0");
 
 	public PersonalInformationComponent() {
@@ -19,9 +21,12 @@ class PersonalInformationComponent extends JPanel {
 		this.add(idLabel);
 
 		this.add(new JLabel("Name:"));
-		nameField.setEditable(false);
-		nameField.setColumns(10);
-		this.add(nameField);
+		forenameField.setEditable(false);
+		forenameField.setColumns(7);
+		this.add(forenameField);
+		lastnameField.setEditable(false);
+		lastnameField.setColumns(7);
+		this.add(lastnameField);
 
 		this.add(new JLabel("Number of allocated matches:"));
 		allocationsField.setEditable(false);
@@ -31,7 +36,8 @@ class PersonalInformationComponent extends JPanel {
 
 	public void displayRefereeDetails(Referee ref) {
 		idLabel.setText(ref.getID());
-		nameField.setText(ref.getName());
+		forenameField.setText(ref.getForename());
+		lastnameField.setText(ref.getLastname());
 		allocationsField.setText(ref.getNumberOfAllocations() + "");
 	}
 
@@ -40,30 +46,38 @@ class PersonalInformationComponent extends JPanel {
 	}
 
 	public String getForename() {
-		return nameField.getText().split(" +")[0];
+		return forenameField.getText();
 	}
 
 	public String getLastname() {
-		return nameField.getText().split(" +")[1];
+		return lastnameField.getText();
 	}
 
 	public int getNumAllocations() {
-		return Integer.parseInt(allocationsField.getText());
+		try {
+			return Integer.parseInt(allocationsField.getText());
+		} catch (NumberFormatException ex) {
+			ErrorReporter.displayErrorMessage("Invalid Input", "Please enter a valid number between 0 and 4 billion.");
+			return 0;
+		}
 	}
 
 	public void emptyValues() {
 		idLabel.setText("id");
-		nameField.setText("");
+		forenameField.setText("");
+		lastnameField.setText("");
 		allocationsField.setText("");
 	}
 
 	public void lockNameAndMatches() {
-		nameField.setEditable(false);
+		forenameField.setEditable(false);
+		lastnameField.setEditable(false);
 		allocationsField.setEditable(false);
 	}
 
 	public void unlockNameAndMatches() {
-		nameField.setEditable(true);
+		forenameField.setEditable(true);
+		lastnameField.setEditable(true);
 		allocationsField.setEditable(true);
 	}
 }

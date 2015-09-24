@@ -31,23 +31,26 @@ public class CreateListener implements ActionListener {
 		Referee referee;
 		try {
 			referee = UtilController.getRefereeFromView();
+			referee.validate(false);
+			referee.setID(computeNewIDFor(referee));
 		} catch (InvalidInputException ex) {
 			ErrorReporter.displayErrorMessage("The referee information you entered were invalid", ex.getMessage());
 			return;
 		}
-
 		editor.lockNameAndMatches();
-		referee.setID(computeNewIDFor(referee));
 
 		RefereeList.update(referee);
 		UtilController.updateViewsFromModel();
+
+		editor.getActionComponent().getCreateButton().setText("Create Referee");
 	}
 
 	private String computeNewIDFor(Referee referee) {
 		String result;
 		int number = 1;
 		do {
-			result = referee.getForename().charAt(0) + referee.getLastname().charAt(0) + "" + number;
+			result = "" + referee.getForename().charAt(0) + referee.getLastname().charAt(0) + "" + number;
+			result = result.toUpperCase();
 			System.out.println(result);
 		} while (RefereeList.hasReferee(result));
 

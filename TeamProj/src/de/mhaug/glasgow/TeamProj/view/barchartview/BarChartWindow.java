@@ -18,16 +18,18 @@ import de.mhaug.glasgow.TeamProj.model.Referee;
 public class BarChartWindow extends JFrame {
 	private final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 	private ChartPanel chartPanel;
+	private JFreeChart chart;
 	private static volatile BarChartWindow instance;
 
 	private BarChartWindow() {
+		super("Chart of Allocations per Referee");
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
 		for (Referee ref : UtilController.getAvailableReferees()) {
 			dataset.addValue(ref.getNumberOfAllocations(), "Referee", ref.getName());
 		}
 
-		JFreeChart chart = ChartFactory.createBarChart("Test Chart", "Name of Referee", "Number of Allocations",
+		chart = ChartFactory.createBarChart("Allocations per Referee", "Name of Referee", "Number of Allocations",
 				dataset, PlotOrientation.VERTICAL, false, false, false);
 		chartPanel = new ChartPanel(chart);
 
@@ -48,6 +50,7 @@ public class BarChartWindow extends JFrame {
 	}
 
 	private void updateDataset(Set<Referee> referees) {
+		// TODO: Method does not update Barchart
 		assert referees != null;
 
 		dataset.clear();
@@ -62,5 +65,6 @@ public class BarChartWindow extends JFrame {
 		assert event != null;
 		assert chartPanel != null;
 		chartPanel.chartChanged(event);
+		chart.fireChartChanged();
 	}
 }

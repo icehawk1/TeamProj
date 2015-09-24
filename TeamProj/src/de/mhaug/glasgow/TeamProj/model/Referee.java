@@ -50,31 +50,47 @@ public class Referee implements Comparable<Referee> {
 		this.acceptableTravelAreas = acceptableTravelAreas;
 	}
 
-	public static void validate(Referee ref) throws InvalidInputException {
+	public void validate() throws InvalidInputException {
+		validate(true);
+	}
+
+	public void validate(boolean validateId) throws InvalidInputException {
 		boolean result = true;
 		String message = "Your input is incorrect:\n";
+		String forename_up = forename.toUpperCase();
+		String lastname_up = lastname.toUpperCase();
 
-		if (ref.id.charAt(0) != ref.forename.charAt(0) || ref.id.charAt(1) != ref.lastname.charAt(0)) {
-			message += "Invalid id: " + ref.id + "\n";
+		if (forename == null || forename.isEmpty()) {
+			message += "forename can not be empty\n";
 			result = false;
 		}
 
-		if (ref.forename.contains(" ")) {
+		if (lastname == null || lastname.isEmpty()) {
+			message += "lastname can not be empty\n";
+			result = false;
+		}
+
+		if (validateId && (id.charAt(0) != forename_up.charAt(0) || id.charAt(1) != lastname_up.charAt(0))) {
+			message += "Invalid id: " + id + "\n";
+			result = false;
+		}
+
+		if (forename.contains(" ")) {
 			message += "forename contains spaces\n";
 			result = false;
 		}
 
-		if (ref.lastname.contains(" ")) {
+		if (lastname.contains(" ")) {
 			message += "lastname contains spaces\n";
 			result = false;
 		}
 
-		if (ref.numAllocations < 0) {
+		if (numAllocations < 0) {
 			message += "The number of allocations must be greator or equal to zero\n";
 			result = false;
 		}
 
-		if ((ref.acceptableTravelAreas[ref.homeArea.ordinal()]) == false) {
+		if ((acceptableTravelAreas[homeArea.ordinal()]) == false) {
 			message += "A Referee must be willing to travel within his home area\n";
 			result = false;
 		}
@@ -151,9 +167,5 @@ public class Referee implements Comparable<Referee> {
 
 	public void increaseNumberOfAllocations() {
 		numAllocations++;
-	}
-
-	public void decreaseNumberOfAllocations() {
-		numAllocations--;
 	}
 }

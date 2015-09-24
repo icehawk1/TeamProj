@@ -10,11 +10,15 @@ import de.mhaug.glasgow.TeamProj.model.Referee;
 import de.mhaug.glasgow.TeamProj.view.allocatorview.ErrorReporter;
 
 public class RefereeListFactory {
-	private static final File inputFile = new File("./RefereesIn.txt");
 	private static final int maxInitialReferees = 12;
 
 	public List<Referee> readInputFile() {
-		assert inputFile.canRead();
+		return readInputFile(new File("./RefereesIn.txt"));
+	}
+
+	public List<Referee> readInputFile(File inputFile) {
+		if (!inputFile.canRead())
+			ErrorReporter.displayErrorMessage("Read error", "Could not read file " + inputFile);
 
 		ArrayList<Referee> result = new ArrayList<>(maxInitialReferees);
 
@@ -53,4 +57,5 @@ public class RefereeListFactory {
 		Referee result = new Referee(splittedLine);
 		return result;
 	}
+
 }

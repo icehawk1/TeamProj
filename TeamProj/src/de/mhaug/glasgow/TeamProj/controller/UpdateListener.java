@@ -15,6 +15,7 @@ public class UpdateListener implements ActionListener {
 			// There was no referee selected
 			if (referee.getID().equalsIgnoreCase("id"))
 				return;
+			referee.validate();
 
 			RefereeList.update(referee);
 			UtilController.updateViewsFromModel();

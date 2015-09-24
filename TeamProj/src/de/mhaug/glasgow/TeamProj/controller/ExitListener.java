@@ -12,7 +12,6 @@ import de.mhaug.glasgow.TeamProj.model.RefereeList;
 public class ExitListener implements WindowListener {
 
 	private static final File refereeFile = new File("./RefereesOut.txt");
-	private static final File allocationFile = new File("./MatchAllocs.txt");
 
 	@Override
 	public void windowClosing(WindowEvent event) {

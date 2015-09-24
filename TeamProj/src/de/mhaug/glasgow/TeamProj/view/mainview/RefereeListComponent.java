@@ -10,7 +10,7 @@ import de.mhaug.glasgow.TeamProj.controller.UtilController;
 import de.mhaug.glasgow.TeamProj.model.Referee;
 
 class RefereeListComponent extends JScrollPane {
-	private final static JList internallist = new JList<>(RefereeListModel.getInstance());
+	private final static JList<Referee> internallist = new JList<>(RefereeListModel.getInstance());
 
 	public RefereeListComponent() {
 		super(internallist);
