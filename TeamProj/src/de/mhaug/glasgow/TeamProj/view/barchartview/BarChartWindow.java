@@ -21,8 +21,7 @@ public class BarChartWindow extends JFrame {
 	private static volatile BarChartWindow instance;
 
 	private BarChartWindow() {
-		JFrame frame = new JFrame("Charts");
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
 		for (Referee ref : UtilController.getAvailableReferees()) {
 			dataset.addValue(ref.getNumberOfAllocations(), "Referee", ref.getName());
@@ -32,7 +31,8 @@ public class BarChartWindow extends JFrame {
 				dataset, PlotOrientation.VERTICAL, false, false, false);
 		chartPanel = new ChartPanel(chart);
 
-		frame.add(chartPanel);
+		this.getContentPane().add(chartPanel);
+		this.pack();
 	}
 
 	public static synchronized BarChartWindow getInstance() {
@@ -43,7 +43,11 @@ public class BarChartWindow extends JFrame {
 		return instance;
 	}
 
-	public void updateDataset(Set<Referee> referees) {
+	public void updateView() {
+		updateDataset(UtilController.getAvailableReferees());
+	}
+
+	private void updateDataset(Set<Referee> referees) {
 		assert referees != null;
 
 		dataset.clear();
@@ -58,9 +62,5 @@ public class BarChartWindow extends JFrame {
 		assert event != null;
 		assert chartPanel != null;
 		chartPanel.chartChanged(event);
-	}
-
-	public void updateView() {
-		updateDataset(UtilController.getAvailableReferees());
 	}
 }

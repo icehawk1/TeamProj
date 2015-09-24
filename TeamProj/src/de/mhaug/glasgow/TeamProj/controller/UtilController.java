@@ -31,7 +31,7 @@ public final class UtilController {
 	public static void updateViewsFromModel() {
 		SortedSet<Referee> referees = RefereeList.getReadOnlyView();
 
-		BarChartWindow.getInstance().updateDataset(referees);
+		BarChartWindow.getInstance().updateView();
 		MainWindow.getInstance().updateRefereeList(referees);
 	}
 
