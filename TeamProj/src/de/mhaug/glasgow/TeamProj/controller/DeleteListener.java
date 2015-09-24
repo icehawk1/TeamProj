@@ -13,11 +13,15 @@ public class DeleteListener implements ActionListener {
 		Referee referee;
 		try {
 			referee = UtilController.getRefereeFromView();
+			if (!RefereeList.hasReferee(referee.getID())) {
+				ErrorReporter.displayErrorMessage("Unknown ID", "There is no Referee with id " + referee.getID());
+				return;
+			}
+
 			RefereeList.delete(referee.getForename(), referee.getLastname());
 			UtilController.updateViewsFromModel();
 		} catch (InvalidInputException ex) {
-			ex.printStackTrace();
-			ErrorReporter.displayErrorMessage("The referee information you entered were invalid", ex.getMessage());
+			// Can be ignored for deletion
 		}
 	}
 }

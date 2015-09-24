@@ -50,4 +50,20 @@ class PersonalInformationComponent extends JPanel {
 	public int getNumAllocations() {
 		return Integer.parseInt(allocationsField.getText());
 	}
+
+	public void emptyValues() {
+		idLabel.setText("id");
+		nameField.setText("");
+		allocationsField.setText("");
+	}
+
+	public void lockNameAndMatches() {
+		nameField.setEditable(false);
+		allocationsField.setEditable(false);
+	}
+
+	public void unlockNameAndMatches() {
+		nameField.setEditable(true);
+		allocationsField.setEditable(true);
+	}
 }

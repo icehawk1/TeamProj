@@ -10,6 +10,7 @@ import java.util.TreeSet;
  * This class holds the referees that are available to be allocated to matches.
  */
 public final class RefereeList {
+	// TODO: Use Map from ID to Referee instead
 	private static SortedSet<Referee> referees = new TreeSet<>();
 
 	// Don't initialize me
@@ -20,7 +21,7 @@ public final class RefereeList {
 	 * Returns a set view of the available referees. This is read-only to
 	 * prevent tampering with the set outside of the CRUD-Methods.
 	 */
-	public static SortedSet<Referee> getReadOnlySet() {
+	public static SortedSet<Referee> getReadOnlyView() {
 		return Collections.unmodifiableSortedSet(referees);
 	}
 
@@ -113,5 +114,21 @@ public final class RefereeList {
 			}
 		if (toRemove != null)
 			referees.remove(toRemove);
+	}
+
+	public static boolean hasReferee(String id) {
+		for (Referee ref : referees)
+			if (ref.getID().equalsIgnoreCase(id))
+				return true;
+
+		return false;
+	}
+
+	public static boolean hasReferee(String forename, String lastname) {
+		for (Referee ref : referees)
+			if (ref.getForename().equalsIgnoreCase(forename) && ref.getLastname().equalsIgnoreCase(lastname))
+				return true;
+
+		return false;
 	}
 }

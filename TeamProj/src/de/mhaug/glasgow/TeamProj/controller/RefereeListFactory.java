@@ -43,7 +43,7 @@ public class RefereeListFactory {
 	private Referee createRefereeFromLine(String inputLine) {
 		// The + causes several spaces to be parsed as one separator
 		// e.g. "Dave  Gray" is parsed to {"Dave", "Gray"}
-		String[] splittedLine = inputLine.split(" +");
+		String[] splittedLine = inputLine.split("[ \t]+");
 		assert splittedLine.length == 7 : "line of length " + splittedLine.length;
 
 		for (int i = 0; i < splittedLine.length; i++) {

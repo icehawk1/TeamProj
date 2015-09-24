@@ -15,7 +15,7 @@ public class TeamProj {
 		List<Referee> refereeList = rlf.readInputFile();
 		RefereeList.create(refereeList);
 
-		SearchListener.displayReferee(RefereeList.getReadOnlySet().first().getID());
+		SearchListener.displayReferee(RefereeList.getReadOnlyView().first().getID());
 		MainWindow.getInstance().setVisible(true);
 	}
 }

@@ -39,4 +39,9 @@ class AcceptableTravelAreasComponent extends JPanel {
 			result[i] = areaCheckBoxes.get(i).isSelected();
 		return result;
 	}
+
+	public void emptyValues() {
+		for (JCheckBox box : areaCheckBoxes)
+			box.setSelected(false);
+	}
 }

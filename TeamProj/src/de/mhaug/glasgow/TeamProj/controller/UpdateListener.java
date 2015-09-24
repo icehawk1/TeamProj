@@ -10,9 +10,8 @@ import de.mhaug.glasgow.TeamProj.view.allocatorview.ErrorReporter;
 public class UpdateListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		Referee referee;
 		try {
-			referee = UtilController.getRefereeFromView();
+			Referee referee = UtilController.getRefereeFromView();
 			// There was no referee selected
 			if (referee.getID().equalsIgnoreCase("id"))
 				return;

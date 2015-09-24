@@ -22,7 +22,7 @@ public class BarChartWindow extends JFrame {
 
 	private BarChartWindow() {
 		JFrame frame = new JFrame("Charts");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
 		for (Referee ref : UtilController.getAvailableReferees()) {
 			dataset.addValue(ref.getNumberOfAllocations(), "Referee", ref.getName());
@@ -58,5 +58,9 @@ public class BarChartWindow extends JFrame {
 		assert event != null;
 		assert chartPanel != null;
 		chartPanel.chartChanged(event);
+	}
+
+	public void updateView() {
+		updateDataset(UtilController.getAvailableReferees());
 	}
 }

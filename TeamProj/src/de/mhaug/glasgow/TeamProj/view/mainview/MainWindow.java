@@ -6,8 +6,8 @@ import java.util.SortedSet;
 import javax.swing.JFrame;
 
 import de.mhaug.glasgow.TeamProj.controller.ExitListener;
+import de.mhaug.glasgow.TeamProj.controller.UtilController;
 import de.mhaug.glasgow.TeamProj.model.Referee;
-import de.mhaug.glasgow.TeamProj.model.RefereeList;
 
 public class MainWindow extends JFrame {
 	private static volatile MainWindow instance;
@@ -33,7 +33,7 @@ public class MainWindow extends JFrame {
 
 	private void createMainWindow() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.addWindowListener(new ExitListener(RefereeList.getReadOnlySet()));
+		this.addWindowListener(new ExitListener());
 
 		this.setLayout(new BorderLayout());
 
@@ -61,5 +61,9 @@ public class MainWindow extends JFrame {
 
 	public void updateRefereeList(SortedSet<Referee> referees) {
 		listComp.updateList(referees);
+	}
+
+	public void updateView() {
+		updateRefereeList(UtilController.getAvailableReferees());
 	}
 }

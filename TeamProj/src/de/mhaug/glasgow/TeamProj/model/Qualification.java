@@ -45,6 +45,10 @@ public class Qualification {
 			return this.league == qual.league && this.level == qual.level;
 		}
 	}
+
+	public int getLevel() {
+		return level;
+	}
 }
 
 enum League {

@@ -2,6 +2,8 @@ package de.mhaug.glasgow.TeamProj.model;
 
 import org.apache.commons.lang3.BooleanUtils;
 
+import de.mhaug.glasgow.TeamProj.controller.InvalidInputException;
+
 public class Referee implements Comparable<Referee> {
 
 	private String id;
@@ -11,17 +13,6 @@ public class Referee implements Comparable<Referee> {
 	private int numAllocations;
 	private Area homeArea;
 	private boolean[] acceptableTravelAreas;
-
-	public Referee(String id, String forename, String lastname, Qualification qualification, int numAllocations,
-			Area homeArea, boolean[] acceptableTravelAreas) {
-		this.id = id;
-		this.forename = forename;
-		this.lastname = lastname;
-		this.qualification = qualification;
-		this.numAllocations = numAllocations;
-		this.homeArea = homeArea;
-		this.acceptableTravelAreas = acceptableTravelAreas;
-	}
 
 	public Referee(String[] refereeDetails) {
 		assert refereeDetails.length == 7;
@@ -46,6 +37,50 @@ public class Referee implements Comparable<Referee> {
 		this.acceptableTravelAreas = createAcceptableTravelAreas(refereeDetails[6]);
 		// Spec says: All Referees are willing to travel within their home area
 		assert this.acceptableTravelAreas[this.homeArea.ordinal()] == true;
+	}
+
+	public Referee(String id, String forename, String lastname, Qualification qualification, int numAllocations,
+			Area homeArea, boolean[] acceptableTravelAreas) {
+		this.id = id;
+		this.forename = forename;
+		this.lastname = lastname;
+		this.qualification = qualification;
+		this.numAllocations = numAllocations;
+		this.homeArea = homeArea;
+		this.acceptableTravelAreas = acceptableTravelAreas;
+	}
+
+	public static void validate(Referee ref) throws InvalidInputException {
+		boolean result = true;
+		String message = "Your input is incorrect:\n";
+
+		if (ref.id.charAt(0) != ref.forename.charAt(0) || ref.id.charAt(1) != ref.lastname.charAt(0)) {
+			message += "Invalid id: " + ref.id + "\n";
+			result = false;
+		}
+
+		if (ref.forename.contains(" ")) {
+			message += "forename contains spaces\n";
+			result = false;
+		}
+
+		if (ref.lastname.contains(" ")) {
+			message += "lastname contains spaces\n";
+			result = false;
+		}
+
+		if (ref.numAllocations < 0) {
+			message += "The number of allocations must be greator or equal to zero\n";
+			result = false;
+		}
+
+		if ((ref.acceptableTravelAreas[ref.homeArea.ordinal()]) == false) {
+			message += "A Referee must be willing to travel within his home area\n";
+			result = false;
+		}
+
+		if (result == false)
+			throw new InvalidInputException(message);
 	}
 
 	private boolean[] createAcceptableTravelAreas(String areaStr) {
@@ -108,5 +143,17 @@ public class Referee implements Comparable<Referee> {
 	public Area getHomeArea() {
 		assert homeArea != null;
 		return homeArea;
+	}
+
+	public void setID(String id) {
+		this.id = id;
+	}
+
+	public void increaseNumberOfAllocations() {
+		numAllocations++;
+	}
+
+	public void decreaseNumberOfAllocations() {
+		numAllocations--;
 	}
 }

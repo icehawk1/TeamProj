@@ -1,27 +1,59 @@
 package de.mhaug.glasgow.TeamProj.view.allocatorview;
 
+import java.util.List;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 import de.mhaug.glasgow.TeamProj.model.Referee;
-import de.mhaug.glasgow.TeamProj.model.RefereeList;
 
-class SuitableRefereesComponent extends JScrollPane {
+public class SuitableRefereesComponent extends JScrollPane {
+	private final static JList internallist = new JList<>(SuitableRefereesModel.getInstance());
+
 	public SuitableRefereesComponent() {
-		super(new JList<>(new RefereeListModel()));
-	}
-}
-
-class RefereeListModel extends DefaultListModel<Referee> {
-	public RefereeListModel() {
-		for (Referee ref : RefereeList.getReadOnlySet())
-			if (isSuitable(ref))
-				this.addElement(ref);
+		super(internallist);
 	}
 
-	private boolean isSuitable(Referee ref) {
-		// TODO Auto-generated method stub
-		return true;
+	public void emptyValues() {
+		SuitableRefereesModel.getInstance().clear();
+	}
+
+	public void displayRefereeList(List<Referee> reflist) {
+		SuitableRefereesModel.getInstance().displayList(reflist);
+		if (reflist.size() >= 2)
+			internallist.setSelectedIndices(new int[] { 0, 1 });
+	}
+
+	private static class SuitableRefereesModel extends DefaultListModel<Referee> {
+		private static volatile SuitableRefereesModel instance;
+
+		private SuitableRefereesModel() {
+		}
+
+		public void displayList(List<Referee> reflist) {
+			this.removeAllElements();
+			for (Referee item : reflist)
+				this.addElement(item);
+			fireContentsChanged(this, 0, reflist.size());
+		}
+
+		public static synchronized SuitableRefereesModel getInstance() {
+			if (instance == null) {
+				instance = new SuitableRefereesModel();
+			}
+
+			return instance;
+		}
+	}
+
+	public int getNumberOfDisplayedReferees() {
+		return internallist.getModel().getSize();
+	}
+
+	public List<Referee> getSelectedReferees() {
+		List result = internallist.getSelectedValuesList();
+		// System.out.println(result);
+		return result;
 	}
 }

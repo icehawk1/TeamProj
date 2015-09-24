@@ -24,6 +24,10 @@ public class RefereeEditorComponent extends JPanel {
 		this.add(actionComponent);
 	}
 
+	public ActionComponent getActionComponent() {
+		return actionComponent;
+	}
+
 	public void displayRefereeDetails(Referee ref) {
 		personalInformationComponent.displayRefereeDetails(ref);
 		qualNAreaComponent.displayRefereeDetails(ref);
@@ -42,8 +46,30 @@ public class RefereeEditorComponent extends JPanel {
 		return result;
 	}
 
-	public boolean areValuesOfFieldsValid() {
-		// TODO Auto-generated method stub
-		return true;
+	/**
+	 * Set the values of all fields to an 'empty' value, so it becomes apparent
+	 * to the user that he should enter new data. This method is used when
+	 * creating a new referee.
+	 */
+	public void emptyValues() {
+		personalInformationComponent.emptyValues();
+		qualNAreaComponent.emptyValues();
+		acceptableTravelAreasComponent.emptyValues();
+	}
+
+	/**
+	 * Locks the field for the referee's name and for the number of matches he
+	 * has been allocated, so that the user CAN NOT enter values.
+	 */
+	public void unlockNameAndMatches() {
+		personalInformationComponent.unlockNameAndMatches();
+	}
+
+	/**
+	 * Unlocks the field for the referee's name and for the number of matches he
+	 * has been allocated, so that the user CAN enter values.
+	 */
+	public void lockNameAndMatches() {
+		personalInformationComponent.lockNameAndMatches();
 	}
 }

@@ -17,10 +17,10 @@ public final class UtilController {
 	}
 
 	/**
-	 * Delegates to {@link RefereeList#getReadOnlySet()}
+	 * Delegates to {@link RefereeList#getReadOnlyView()}
 	 */
 	public static SortedSet<Referee> getAvailableReferees() {
-		return RefereeList.getReadOnlySet();
+		return RefereeList.getReadOnlyView();
 	}
 
 	/**
@@ -29,7 +29,7 @@ public final class UtilController {
 	 * causes views, that have outdated data to use the current one.
 	 */
 	public static void updateViewsFromModel() {
-		SortedSet<Referee> referees = RefereeList.getReadOnlySet();
+		SortedSet<Referee> referees = RefereeList.getReadOnlyView();
 
 		BarChartWindow.getInstance().updateDataset(referees);
 		MainWindow.getInstance().updateRefereeList(referees);
@@ -44,9 +44,9 @@ public final class UtilController {
 	 */
 	public static Referee getRefereeFromView() throws InvalidInputException {
 		RefereeEditorComponent refEditor = MainWindow.getInstance().getEditorComponent();
-		if (refEditor.areValuesOfFieldsValid() == true)
-			return refEditor.buildReferee();
-		else
-			throw new InvalidInputException();
+		Referee result = refEditor.buildReferee();
+
+		Referee.validate(result);
+		return result;
 	}
 }
