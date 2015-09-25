@@ -74,4 +74,8 @@ public class MainWindow extends JFrame {
 	public String getSearchLastname() {
 		return searchComp.getLastname();
 	}
+
+	public void displayRefereeDetails(Referee ref) {
+		editorComp.displayRefereeDetails(ref);
+	}
 }

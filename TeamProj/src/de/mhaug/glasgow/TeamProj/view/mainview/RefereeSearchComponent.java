@@ -28,10 +28,10 @@ class RefereeSearchComponent extends JPanel {
 	}
 
 	public String getForename() {
-		return forenameField.getText();
+		return forenameField.getText().trim();
 	}
 
 	public String getLastname() {
-		return lastnameField.getText();
+		return lastnameField.getText().trim();
 	}
 }

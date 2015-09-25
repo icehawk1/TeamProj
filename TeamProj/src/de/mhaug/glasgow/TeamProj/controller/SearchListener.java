@@ -8,7 +8,6 @@ import de.mhaug.glasgow.TeamProj.model.Referee;
 import de.mhaug.glasgow.TeamProj.model.RefereeList;
 import de.mhaug.glasgow.TeamProj.view.allocatorview.ErrorReporter;
 import de.mhaug.glasgow.TeamProj.view.mainview.MainWindow;
-import de.mhaug.glasgow.TeamProj.view.mainview.RefereeEditorComponent;
 
 public class SearchListener implements ActionListener {
 	private String forename;
@@ -26,7 +25,7 @@ public class SearchListener implements ActionListener {
 			return;
 		}
 
-		displayReferee(ref);
+		MainWindow.getInstance().displayRefereeDetails(ref);
 	}
 
 	public static void displayReferee(String id) {
@@ -38,11 +37,6 @@ public class SearchListener implements ActionListener {
 			return;
 		}
 
-		displayReferee(ref);
-	}
-
-	private static void displayReferee(Referee ref) {
-		RefereeEditorComponent editor = MainWindow.getInstance().getEditorComponent();
-		editor.displayRefereeDetails(ref);
+		MainWindow.getInstance().displayRefereeDetails(ref);
 	}
 }
