@@ -66,4 +66,12 @@ public class MainWindow extends JFrame {
 	public void updateView() {
 		updateRefereeList(UtilController.getAvailableReferees());
 	}
+
+	public String getSearchForename() {
+		return searchComp.getForename();
+	}
+
+	public String getSearchLastname() {
+		return searchComp.getLastname();
+	}
 }

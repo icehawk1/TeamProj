@@ -10,19 +10,28 @@ import javax.swing.JTextField;
 import de.mhaug.glasgow.TeamProj.controller.SearchListener;
 
 class RefereeSearchComponent extends JPanel {
+	private final JTextField forenameField = new JTextField(10);
+	private final JTextField lastnameField = new JTextField(10);
+
 	public RefereeSearchComponent() {
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 
 		this.add(new JLabel("Forename:"));
-		final JTextField forenameField = new JTextField(10);
 		this.add(forenameField);
 
 		this.add(new JLabel("Lastname:"));
-		final JTextField lastnameField = new JTextField(10);
 		this.add(lastnameField);
 
 		JButton searchButton = new JButton("Search");
-		searchButton.addActionListener(new SearchListener(forenameField, lastnameField));
+		searchButton.addActionListener(new SearchListener());
 		this.add(searchButton);
+	}
+
+	public String getForename() {
+		return forenameField.getText();
+	}
+
+	public String getLastname() {
+		return lastnameField.getText();
 	}
 }
