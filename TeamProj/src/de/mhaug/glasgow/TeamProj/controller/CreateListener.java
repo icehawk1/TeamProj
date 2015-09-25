@@ -24,7 +24,7 @@ public class CreateListener implements ActionListener {
 	public void createButtonPressed(RefereeEditorComponent editor) {
 		editor.emptyValues();
 		editor.unlockNameAndMatches();
-		editor.getActionComponent().getCreateButton().setText("Add Referee");
+		MainWindow.getInstance().setCreateButtonText("Add Referee");
 	}
 
 	public void addButtonPressed(RefereeEditorComponent editor) {
@@ -42,7 +42,7 @@ public class CreateListener implements ActionListener {
 		RefereeList.update(referee);
 		UtilController.updateViewsFromModel();
 
-		editor.getActionComponent().getCreateButton().setText("Create Referee");
+		MainWindow.getInstance().setCreateButtonText("Create Referee");
 	}
 
 	private String computeNewIDFor(Referee referee) {

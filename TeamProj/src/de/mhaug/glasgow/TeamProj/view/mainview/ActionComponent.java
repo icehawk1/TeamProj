@@ -11,7 +11,7 @@ import de.mhaug.glasgow.TeamProj.controller.CreateListener;
 import de.mhaug.glasgow.TeamProj.controller.DeleteListener;
 import de.mhaug.glasgow.TeamProj.controller.UpdateListener;
 
-public class ActionComponent extends JPanel {
+class ActionComponent extends JPanel {
 	private final JButton barchartButton = new JButton("Show Barchart");
 	private final JButton allocateButton = new JButton("Allocate Match");
 	private final JButton createButton = new JButton("Create Referee");

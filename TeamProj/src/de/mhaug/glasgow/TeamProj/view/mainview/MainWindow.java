@@ -78,4 +78,8 @@ public class MainWindow extends JFrame {
 	public void displayRefereeDetails(Referee ref) {
 		editorComp.displayRefereeDetails(ref);
 	}
+
+	public void setCreateButtonText(String command) {
+		getEditorComponent().getActionComponent().getCreateButton().setText(command);
+	}
 }
