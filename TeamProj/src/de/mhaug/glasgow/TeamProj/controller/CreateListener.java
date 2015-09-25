@@ -13,7 +13,6 @@ public class CreateListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		RefereeEditorComponent editor = MainWindow.getInstance().getEditorComponent();
-		MainWindow maw = MainWindow.getInstance();
 		if (event.getActionCommand().contains("Create"))
 			createButtonPressed(editor);
 		else if (event.getActionCommand().contains("Add"))
