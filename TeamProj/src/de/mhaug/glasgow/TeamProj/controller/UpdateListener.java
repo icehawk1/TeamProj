@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import de.mhaug.glasgow.TeamProj.model.Referee;
 import de.mhaug.glasgow.TeamProj.model.RefereeList;
-import de.mhaug.glasgow.TeamProj.view.allocatorview.ErrorReporter;
+import de.mhaug.glasgow.TeamProj.view.ErrorReporter;
 
 public class UpdateListener implements ActionListener {
 	@Override

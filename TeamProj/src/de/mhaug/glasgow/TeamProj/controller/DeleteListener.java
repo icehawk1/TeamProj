@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import de.mhaug.glasgow.TeamProj.model.Referee;
 import de.mhaug.glasgow.TeamProj.model.RefereeList;
-import de.mhaug.glasgow.TeamProj.view.allocatorview.ErrorReporter;
+import de.mhaug.glasgow.TeamProj.view.ErrorReporter;
 
 public class DeleteListener implements ActionListener {
 	@Override
@@ -18,7 +18,7 @@ public class DeleteListener implements ActionListener {
 				return;
 			}
 
-			RefereeList.delete(referee.getForename(), referee.getLastname());
+			RefereeList.delete(referee.getID());
 			UtilController.updateViewsFromModel();
 		} catch (InvalidInputException ex) {
 			// Can be ignored for deletion

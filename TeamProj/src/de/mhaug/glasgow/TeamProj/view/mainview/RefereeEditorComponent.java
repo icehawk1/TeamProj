@@ -72,4 +72,8 @@ public class RefereeEditorComponent extends JPanel {
 	public void lockNameAndMatches() {
 		personalInformationComponent.lockNameAndMatches();
 	}
+
+	public void setID(String id) {
+		personalInformationComponent.setID(id);
+	}
 }

@@ -76,7 +76,7 @@ public class MatchAllocatorWindow extends JFrame {
 		allocateButton.setText(text);
 	}
 
-	public SuitableRefereesComponent getSuitableRefereesComponent() {
-		return refComp;
+	public void displayRefereeList(List<Referee> referees) {
+		refComp.displayRefereeList(referees);
 	}
 }

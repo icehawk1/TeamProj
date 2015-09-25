@@ -47,14 +47,6 @@ public class MainWindow extends JFrame {
 		this.add(editorComp, BorderLayout.SOUTH);
 	}
 
-	public RefereeListComponent getListComponent() {
-		return listComp;
-	}
-
-	public RefereeSearchComponent getSearchComponent() {
-		return searchComp;
-	}
-
 	public RefereeEditorComponent getEditorComponent() {
 		return editorComp;
 	}
@@ -80,6 +72,6 @@ public class MainWindow extends JFrame {
 	}
 
 	public void setCreateButtonText(String command) {
-		getEditorComponent().getActionComponent().getCreateButton().setText(command);
+		editorComp.getActionComponent().getCreateButton().setText(command);
 	}
 }

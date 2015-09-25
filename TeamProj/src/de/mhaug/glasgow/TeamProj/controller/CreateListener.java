@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import de.mhaug.glasgow.TeamProj.model.Referee;
 import de.mhaug.glasgow.TeamProj.model.RefereeList;
-import de.mhaug.glasgow.TeamProj.view.allocatorview.ErrorReporter;
+import de.mhaug.glasgow.TeamProj.view.ErrorReporter;
 import de.mhaug.glasgow.TeamProj.view.mainview.MainWindow;
 import de.mhaug.glasgow.TeamProj.view.mainview.RefereeEditorComponent;
 
@@ -13,6 +13,7 @@ public class CreateListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		RefereeEditorComponent editor = MainWindow.getInstance().getEditorComponent();
+		MainWindow maw = MainWindow.getInstance();
 		if (event.getActionCommand().contains("Create"))
 			createButtonPressed(editor);
 		else if (event.getActionCommand().contains("Add"))
@@ -33,6 +34,7 @@ public class CreateListener implements ActionListener {
 			referee = UtilController.getRefereeFromView();
 			referee.validate(false);
 			referee.setID(computeNewIDFor(referee));
+			editor.setID(referee.getID());
 		} catch (InvalidInputException ex) {
 			ErrorReporter.displayErrorMessage("The referee information you entered were invalid", ex.getMessage());
 			return;
@@ -52,6 +54,8 @@ public class CreateListener implements ActionListener {
 			result = "" + referee.getForename().charAt(0) + referee.getLastname().charAt(0) + "" + number;
 			result = result.toUpperCase();
 			System.out.println(result);
+
+			number++;
 		} while (RefereeList.hasReferee(result));
 
 		return result;

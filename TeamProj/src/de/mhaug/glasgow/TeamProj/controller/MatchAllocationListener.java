@@ -12,7 +12,7 @@ import de.mhaug.glasgow.TeamProj.model.Allocation;
 import de.mhaug.glasgow.TeamProj.model.Area;
 import de.mhaug.glasgow.TeamProj.model.Match;
 import de.mhaug.glasgow.TeamProj.model.MatchLevel;
-import de.mhaug.glasgow.TeamProj.view.allocatorview.ErrorReporter;
+import de.mhaug.glasgow.TeamProj.view.ErrorReporter;
 import de.mhaug.glasgow.TeamProj.view.allocatorview.MatchAllocatorWindow;
 import de.mhaug.glasgow.TeamProj.view.barchartview.BarChartWindow;
 import de.mhaug.glasgow.TeamProj.view.mainview.MainWindow;
@@ -40,8 +40,7 @@ public class MatchAllocationListener implements ActionListener {
 
 		Area area = maw.getArea();
 		boolean isJuniorMatch = maw.isJuniorMatch();
-		maw.getSuitableRefereesComponent().displayRefereeList(
-				RefereeChooser.computeRefereesByAllocationPreference(area, isJuniorMatch));
+		maw.displayRefereeList(RefereeChooser.computeRefereesByAllocationPreference(area, isJuniorMatch));
 
 		if (maw.getNumberOfSuitableReferees() < 2)
 			ErrorReporter.displayErrorMessage("Not enough suitable Referees",

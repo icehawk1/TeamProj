@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 import de.mhaug.glasgow.TeamProj.model.Referee;
 import de.mhaug.glasgow.TeamProj.model.RefereeList;
-import de.mhaug.glasgow.TeamProj.view.allocatorview.ErrorReporter;
+import de.mhaug.glasgow.TeamProj.view.ErrorReporter;
 import de.mhaug.glasgow.TeamProj.view.mainview.MainWindow;
 
 public class SearchListener implements ActionListener {

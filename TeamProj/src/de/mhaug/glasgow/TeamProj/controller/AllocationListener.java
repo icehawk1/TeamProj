@@ -9,6 +9,7 @@ public class AllocationListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		MatchAllocatorWindow maw = MatchAllocatorWindow.getInstance();
+		maw.emptyValues();
 		maw.setVisible(true);
 	}
 }

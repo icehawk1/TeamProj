@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import de.mhaug.glasgow.TeamProj.model.Referee;
-import de.mhaug.glasgow.TeamProj.view.allocatorview.ErrorReporter;
+import de.mhaug.glasgow.TeamProj.view.ErrorReporter;
 
 public class RefereeListFactory {
 	private static final int maxInitialReferees = 12;

@@ -1,4 +1,4 @@
-package de.mhaug.glasgow.TeamProj.view.allocatorview;
+package de.mhaug.glasgow.TeamProj.view;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

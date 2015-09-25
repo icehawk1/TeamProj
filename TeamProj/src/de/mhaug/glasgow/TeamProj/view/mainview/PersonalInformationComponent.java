@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import de.mhaug.glasgow.TeamProj.model.Referee;
-import de.mhaug.glasgow.TeamProj.view.allocatorview.ErrorReporter;
+import de.mhaug.glasgow.TeamProj.view.ErrorReporter;
 
 class PersonalInformationComponent extends JPanel {
 	private JLabel idLabel = new JLabel("id");
@@ -79,5 +79,9 @@ class PersonalInformationComponent extends JPanel {
 		forenameField.setEditable(true);
 		lastnameField.setEditable(true);
 		allocationsField.setEditable(true);
+	}
+
+	public void setID(String id) {
+		idLabel.setText(id);
 	}
 }
