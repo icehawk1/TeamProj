@@ -69,6 +69,7 @@ public class MainWindow extends JFrame {
 
 	public void displayRefereeDetails(Referee ref) {
 		editorComp.displayRefereeDetails(ref);
+		listComp.selectReferee(ref);
 	}
 
 	public void setCreateButtonText(String command) {

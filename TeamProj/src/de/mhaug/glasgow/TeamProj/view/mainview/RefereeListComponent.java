@@ -47,4 +47,9 @@ class RefereeListComponent extends JScrollPane {
 			return instance;
 		}
 	}
+
+	public void selectReferee(Referee ref) {
+		internallist.setSelectedValue(ref, true);
+	}
+
 }
