@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.util.NoSuchElementException;
 
 import de.mhaug.glasgow.TeamProj.model.Referee;
-import de.mhaug.glasgow.TeamProj.model.RefereeList;
 import de.mhaug.glasgow.TeamProj.view.ErrorReporter;
 import de.mhaug.glasgow.TeamProj.view.mainview.MainWindow;
 
@@ -19,19 +18,8 @@ public class SearchListener implements ActionListener {
 		try {
 			forename = MainWindow.getInstance().getSearchForename();
 			lastname = MainWindow.getInstance().getSearchLastname();
-			ref = RefereeList.request(forename, lastname);
-		} catch (NoSuchElementException ex) {
-			ErrorReporter.displayErrorMessage("Referee not found", ex.getMessage());
-			return;
-		}
-
-		MainWindow.getInstance().displayRefereeDetails(ref);
-	}
-
-	public static void displayReferee(String id) {
-		Referee ref;
-		try {
-			ref = RefereeList.request(id);
+			MainWindow.getInstance().getRefereeList().selectReferee(forename, lastname);
+			ref = MainWindow.getInstance().getRefereeList().getSelectedReferee();
 		} catch (NoSuchElementException ex) {
 			ErrorReporter.displayErrorMessage("Referee not found", ex.getMessage());
 			return;

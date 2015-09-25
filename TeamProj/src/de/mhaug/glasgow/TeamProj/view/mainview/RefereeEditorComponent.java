@@ -76,4 +76,9 @@ public class RefereeEditorComponent extends JPanel {
 	public void setID(String id) {
 		personalInformationComponent.setID(id);
 	}
+
+	public void updateReferee() {
+		// TODO Auto-generated method stub
+
+	}
 }

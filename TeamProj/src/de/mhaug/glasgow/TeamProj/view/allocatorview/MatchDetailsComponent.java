@@ -24,7 +24,7 @@ class MatchDetailsComponent extends JPanel {
 		this.add(new JLabel("Area the match is held in:"));
 		this.add(areaBox);
 
-		this.add(new JLabel("Level of the match:"));
+		this.add(new JLabel("Is it a junior match?"));
 		this.add(levelBox);
 	}
 

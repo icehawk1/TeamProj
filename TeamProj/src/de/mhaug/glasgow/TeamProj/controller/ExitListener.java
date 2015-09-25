@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 import de.mhaug.glasgow.TeamProj.model.Referee;
-import de.mhaug.glasgow.TeamProj.model.RefereeList;
+import de.mhaug.glasgow.TeamProj.view.mainview.MainWindow;
 
 public class ExitListener implements WindowListener {
 
@@ -24,7 +24,7 @@ public class ExitListener implements WindowListener {
 
 		try {
 			PrintWriter writer = new PrintWriter(refereeFile);
-			for (Referee currentReferee : RefereeList.getReadOnlyView()) {
+			for (Referee currentReferee : MainWindow.getInstance().getRefereeList()) {
 				writer.println(currentReferee);
 			}
 			writer.close();

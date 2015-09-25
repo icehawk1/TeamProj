@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import de.mhaug.glasgow.TeamProj.model.Referee;
-import de.mhaug.glasgow.TeamProj.model.RefereeList;
 import de.mhaug.glasgow.TeamProj.view.ErrorReporter;
 import de.mhaug.glasgow.TeamProj.view.mainview.MainWindow;
 import de.mhaug.glasgow.TeamProj.view.mainview.RefereeEditorComponent;
@@ -40,8 +39,9 @@ public class CreateListener implements ActionListener {
 		}
 		editor.lockNameAndMatches();
 
-		RefereeList.update(referee);
-		UtilController.updateViewsFromModel();
+		// RefereeList.update(referee);
+		// UtilController.updateViewsFromModel();
+		MainWindow.getInstance().getRefereeList().insertReferee(referee);
 
 		MainWindow.getInstance().setCreateButtonText("Create Referee");
 	}
@@ -55,7 +55,7 @@ public class CreateListener implements ActionListener {
 			System.out.println(result);
 
 			number++;
-		} while (RefereeList.hasReferee(result));
+		} while (MainWindow.getInstance().getRefereeList().hasReferee(result));
 
 		return result;
 	}
